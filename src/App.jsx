@@ -10,7 +10,39 @@ const Container = styled.div`
  width:220vh;
   display: flex;
   flex-direction: column;
-  
+   background-image: url("src/assets/back2.jpeg"); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  overflow: hidden;
+`;
+const MovieListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 30px;
+  gap: 25px;
+  justify-content: space-evenly;
+  background-color: rgba(31, 48, 58, 0.7); /* Semi-transparent sky blue */
+  animation: fadeIn 1.5s ease-in-out; /* Smooth fade-in effect */
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  & > div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+  }
 `;
 const AppName = styled.div`
   display: flex;
@@ -18,7 +50,7 @@ const AppName = styled.div`
   align-items: center;
 `;
 const Header = styled.div`
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
   color: white;
   display: flex;
   justify-content: space-between;
@@ -27,7 +59,19 @@ const Header = styled.div`
   padding: 10px;
   font-size: 25px;
   font-weight: bold;
-  box-shadow: 0 3px 6px 0 #555;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.7);
+  animation: slideIn 1s ease-in-out;
+
+  @keyframes slideIn {
+    from {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 `;
 const SearchBox = styled.div`
   display: flex;
@@ -41,11 +85,13 @@ const SearchBox = styled.div`
 const SearchIcon = styled.img`
   width: 32px;
   height: 32px;
+  border-radius:50px;
 `;
 const MovieImage = styled.img`
   width: 48px;
   height: 48px;
   margin: 15px;
+  border-radius:50px;
 `;
 const SearchInput = styled.input`
   color: black;
@@ -55,19 +101,22 @@ const SearchInput = styled.input`
   outline: none;
   margin-left: 15px;
 `;
-const MovieListContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 30px;
-  gap: 25px;
-  justify-content: space-evenly;
-`;
+
 const Placeholder = styled.img`
   width: 120px;
   height: 120px;
   margin: 150px;
   opacity: 50%;
+  animation: bounce 2s infinite;
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
 `;
 
 function App() {
@@ -95,11 +144,11 @@ function App() {
     <Container>
       <Header>
         <AppName>
-          <MovieImage src="/assets/movie-icon.svg" alt="App Logo" />
-          React Movie App
+          <MovieImage src="src/assets/symbole.jpeg" alt="App Logo" />
+         Movie Review System
         </AppName>
         <SearchBox>
-          <SearchIcon src="/assets/search-icon.svg" alt="Search" />
+          <SearchIcon src="src/assets/search.png" alt="Search" />
           <SearchInput
             placeholder="Search Movie"
             value={searchQuery}
@@ -123,7 +172,7 @@ function App() {
             />
           ))
         ) : (
-          <Placeholder src="/assets/movie-icon.svg" alt="Placeholder" />
+          <Placeholder src="src/assets/background.webp" alt="Placeholder" />
         )}
       </MovieListContainer>
     </Container>
